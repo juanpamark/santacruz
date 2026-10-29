@@ -13,13 +13,13 @@ interface LightParticle {
   zIndex: number;
 }
 
-// 5 strategic, lightweight particles positioned away from the center dishes
+// 5 strategic particles scaled up by 50% for enhanced visual presence
 const LIGHT_PARTICLES: LightParticle[] = [
   {
     id: "particle-tomate",
     ingredientIndex: 0, // Tomate
     leftPercent: 6,
-    size: 38,
+    size: 57, // (38 * 1.5)
     animationClass: "animate-falling-1",
     zIndex: 5,
   },
@@ -27,7 +27,7 @@ const LIGHT_PARTICLES: LightParticle[] = [
     id: "particle-romero",
     ingredientIndex: 2, // Romero
     leftPercent: 82,
-    size: 40,
+    size: 60, // (40 * 1.5)
     animationClass: "animate-falling-2",
     zIndex: 5,
   },
@@ -35,7 +35,7 @@ const LIGHT_PARTICLES: LightParticle[] = [
     id: "particle-limon",
     ingredientIndex: 3, // Limón
     leftPercent: 14,
-    size: 44,
+    size: 66, // (44 * 1.5)
     animationClass: "animate-falling-3",
     zIndex: 25,
   },
@@ -43,7 +43,7 @@ const LIGHT_PARTICLES: LightParticle[] = [
     id: "particle-perejil",
     ingredientIndex: 1, // Perejil
     leftPercent: 78,
-    size: 32,
+    size: 48, // (32 * 1.5)
     animationClass: "animate-falling-4",
     zIndex: 25,
   },
@@ -51,7 +51,7 @@ const LIGHT_PARTICLES: LightParticle[] = [
     id: "particle-pimienta",
     ingredientIndex: 5, // Pimienta
     leftPercent: 92,
-    size: 22,
+    size: 33, // (22 * 1.5)
     animationClass: "animate-falling-5",
     zIndex: 5,
   },
@@ -89,7 +89,7 @@ export default function FallingIngredients() {
                 src={ingredient.imageUrl}
                 alt=""
                 fill
-                sizes="48px"
+                sizes="80px"
                 className="object-contain select-none pointer-events-none"
                 priority={false}
               />
