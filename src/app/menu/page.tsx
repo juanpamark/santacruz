@@ -7,22 +7,21 @@ import DishCard from "@/components/menu/DishCard";
 import DishDetailModal from "@/components/menu/DishDetailModal";
 import BuildYourLunchModal from "@/components/menu/BuildYourLunchModal";
 import MobileCartBar from "@/components/menu/MobileCartBar";
-import { Search, X, ChefHat, Sparkles, BookOpen } from "lucide-react";
+import { Search, X, ChefHat } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
 import { Dish } from "@/types";
 
 export default function MenuPage() {
   const [activeCategory, setActiveCategory] = useState("todos");
   const [searchQuery, setSearchQuery] = useState("");
-  const [showOnlyToday, setShowOnlyToday] = useState(true);
   const [lunchModalOpen, setLunchModalOpen] = useState(false);
   const [selectedDishForPreview, setSelectedDishForPreview] = useState<Dish | null>(null);
 
-  // Filtered dishes
+  // Filtered dishes: strictly displays available dishes, filtered by category and search
   const filteredDishes = useMemo(() => {
     return FULL_MENU.filter((dish) => {
-      // Availability filter: defaults to showing only today's menu
-      if (showOnlyToday && !dish.isAvailableToday) {
+      // Only show available dishes
+      if (!dish.isAvailableToday) {
         return false;
       }
 
@@ -44,7 +43,7 @@ export default function MenuPage() {
 
       return true;
     });
-  }, [activeCategory, searchQuery, showOnlyToday]);
+  }, [activeCategory, searchQuery]);
 
   return (
     <div className="w-full bg-[#F5F2EB] text-[#1E1E1E] pt-20 sm:pt-28 pb-24 flex flex-col">
@@ -120,70 +119,28 @@ export default function MenuPage() {
         </div>
       </section>
 
-      {/* Sticky Category Navigation */}
+      {/* Sticky Category Navigation (Only category filters left) */}
       <CategoryNav
         activeCategory={activeCategory}
         onSelectCategory={(id) => setActiveCategory(id)}
       />
 
-      {/* 
-        Strategic Filter Sub-Bar: "Disponibles Hoy" Toggle (Right below filters on PC)
-      */}
-      <div className="max-w-6xl mx-auto w-full px-3.5 sm:px-8 mb-6">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-[#FAF8F5] p-2.5 sm:p-3 rounded-2xl sm:rounded-full border border-[#261A14]/10 shadow-sm">
-          {/* Quick Dual Pill Selector */}
-          <div className="flex items-center gap-2 w-full sm:w-auto">
-            <button
-              onClick={() => setShowOnlyToday(true)}
-              className={`flex-1 sm:flex-initial px-4 sm:px-5 py-2 rounded-full text-xs font-sans font-bold transition-all flex items-center justify-center gap-2 ${
-                showOnlyToday
-                  ? "bg-brand-walnut text-[#F5F2EB] shadow-md border border-brand-gold/30"
-                  : "bg-[#EDE8DF] text-brand-dark hover:bg-[#E2DBD0]"
-              }`}
-            >
-              <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
-              <span>Disponibles hoy</span>
-            </button>
-
-            <button
-              onClick={() => setShowOnlyToday(false)}
-              className={`flex-1 sm:flex-initial px-4 sm:px-5 py-2 rounded-full text-xs font-sans font-bold transition-all flex items-center justify-center gap-2 ${
-                !showOnlyToday
-                  ? "bg-brand-walnut text-[#F5F2EB] shadow-md border border-brand-gold/30"
-                  : "bg-[#EDE8DF] text-brand-dark hover:bg-[#E2DBD0]"
-              }`}
-            >
-              <BookOpen className="w-3.5 h-3.5 text-brand-goldDark" />
-              <span>Toda la Carta Completa</span>
-            </button>
-          </div>
-
-          <span className="text-[11px] text-brand-charcoal/70 font-sans hidden md:inline">
-            {showOnlyToday
-              ? "✨ Mostrando la selección fresca preparada para el día de hoy."
-              : "📜 Mostrando todo el repertorio gastronómico de Santa Cruz."}
-          </span>
-        </div>
-      </div>
-
-      {/* Dishes Grid: 2x2 on Mobile, 4 Columns on Large Desktop */}
-      <section className="px-3.5 sm:px-8 max-w-6xl mx-auto w-full">
-        {/* Results Counter */}
+      {/* Dishes Grid */}
+      <section className="px-3.5 sm:px-8 max-w-6xl mx-auto w-full mt-4 sm:mt-6">
+        {/* Results Counter and Clean Filter Reset */}
         <div className="flex items-center justify-between mb-4 sm:mb-6 text-[11px] sm:text-xs font-sans text-brand-charcoal/70">
           <span>
-            Mostrando <strong>{filteredDishes.length}</strong> platos{" "}
-            {showOnlyToday ? "disponibles hoy" : "en toda la carta"}
+            Mostrando <strong>{filteredDishes.length}</strong> platos disponibles
           </span>
-          {(searchQuery || !showOnlyToday || activeCategory !== "todos") && (
+          {(searchQuery || activeCategory !== "todos") && (
             <button
               onClick={() => {
                 setSearchQuery("");
                 setActiveCategory("todos");
-                setShowOnlyToday(true);
               }}
               className="text-brand-goldDark font-bold hover:underline"
             >
-              Restablecer a Menú del Día
+              Limpiar filtros
             </button>
           )}
         </div>
@@ -197,17 +154,16 @@ export default function MenuPage() {
               No encontramos platos para este filtro
             </h4>
             <p className="text-xs text-brand-charcoal/70 mb-5 font-sans">
-              Prueba cambiando de categoría o activando "Toda la Carta Completa".
+              Prueba con otro término de búsqueda o selecciona otra categoría.
             </p>
             <button
               onClick={() => {
                 setSearchQuery("");
                 setActiveCategory("todos");
-                setShowOnlyToday(false);
               }}
-              className="bg-brand-walnut text-[#F5F2EB] px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-sans font-bold shadow-sm"
+              className="bg-brand-walnut text-[#F5F2EB] px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-sans font-bold shadow-sm hover:bg-brand-gold hover:text-brand-dark transition-all"
             >
-              Ver Toda la Carta
+              Ver todos los platos
             </button>
           </div>
         ) : (

@@ -45,7 +45,7 @@ export default function DailyHighlights() {
         </div>
 
         {/* 
-          2x2 Grid on Mobile, 4 Columns on Desktop
+          2x2 Grid on Mobile, 4 Columns on Desktop with 4:3 Photographic Framing
         */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {highlights.map((dish) => (
@@ -54,10 +54,10 @@ export default function DailyHighlights() {
               className="group bg-[#FAF8F5] rounded-2xl sm:rounded-[2rem] p-3 sm:p-5 border border-[#261A14]/10 shadow-sm hover:shadow-card-luxury transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
             >
               <div>
-                {/* Visual Container in Warm Stone - Clickable for Dish Detail Modal */}
+                {/* 4:3 Editorial Photo Container - Clickable for Dish Detail Modal */}
                 <div
                   onClick={() => setSelectedDishForPreview(dish)}
-                  className="relative w-full h-28 sm:h-44 rounded-xl sm:rounded-2xl overflow-hidden bg-[#EDE8DF] flex items-center justify-center p-2 sm:p-4 mb-2.5 sm:mb-4 border border-[#261A14]/5 cursor-pointer select-none"
+                  className="relative w-full aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-[#EDE8DF] mb-2.5 sm:mb-4 border border-[#261A14]/10 cursor-pointer select-none shadow-sm"
                   title={`Ver presentación de ${dish.name}`}
                   role="button"
                   tabIndex={0}
@@ -68,19 +68,19 @@ export default function DailyHighlights() {
                     }
                   }}
                 >
-                  <div className="relative w-24 h-24 sm:w-36 sm:h-36 group-hover:scale-105 transition-transform duration-500">
+                  <div className="relative w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out">
                     <Image
                       src={dish.imageUrl}
                       alt={dish.name}
                       fill
-                      sizes="(max-width: 640px) 120px, 180px"
-                      className="object-contain drop-shadow-dish-25d"
+                      sizes="(max-width: 640px) 200px, 320px"
+                      className="object-cover"
                     />
                   </div>
 
                   {/* Discreet Zoom Overlay Pill on Hover */}
-                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                    <span className="bg-brand-dark/85 text-brand-gold text-[10px] font-sans font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-md border border-brand-gold/30">
+                  <div className="absolute inset-0 bg-black/15 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                    <span className="bg-brand-dark/90 text-brand-gold text-[10px] font-sans font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-md border border-brand-gold/30">
                       <ZoomIn className="w-3 h-3 text-brand-gold" />
                       Ver detalle
                     </span>
@@ -88,7 +88,7 @@ export default function DailyHighlights() {
 
                   {/* Single Discrete Badge */}
                   {dish.badge && (
-                    <div className="absolute top-2 left-2 bg-brand-walnut text-[#F5F2EB] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[8px] sm:text-[9px] font-sans font-bold tracking-wider uppercase border border-[#C5A059]/20 shadow-sm z-10 pointer-events-none">
+                    <div className="absolute top-2 left-2 bg-brand-walnut/90 backdrop-blur-xs text-[#F5F2EB] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[8px] sm:text-[9px] font-sans font-bold tracking-wider uppercase border border-[#C5A059]/20 shadow-sm z-10 pointer-events-none">
                       {dish.badge}
                     </div>
                   )}
@@ -119,17 +119,17 @@ export default function DailyHighlights() {
                       ? "bg-emerald-600 text-white"
                       : "bg-brand-walnut hover:bg-brand-gold text-[#F5F2EB] hover:text-brand-dark"
                   }`}
-                  aria-label={`Agregar ${dish.name}`}
+                  aria-label={`Agregar ${dish.name} al pedido`}
                 >
                   {justAddedId === dish.id ? (
                     <>
-                      <Check className="w-3 h-3 stroke-[3]" />
-                      <span className="hidden sm:inline">Agregado</span>
+                      <Check className="w-3 h-3" />
+                      <span>Listo</span>
                     </>
                   ) : (
                     <>
-                      <Plus className="w-3 h-3 stroke-[2.5]" />
-                      <span className="hidden sm:inline">Agregar</span>
+                      <Plus className="w-3 h-3" />
+                      <span>Pedir</span>
                     </>
                   )}
                 </button>
@@ -138,19 +138,19 @@ export default function DailyHighlights() {
           ))}
         </div>
 
-        {/* Direct Link to Menu */}
-        <div className="mt-10 sm:mt-14 text-center">
+        {/* Bottom CTA to explore all menu */}
+        <div className="mt-8 sm:mt-12 text-center">
           <Link
             href="/menu"
-            className="inline-flex items-center gap-2 bg-brand-dark hover:bg-brand-gold text-[#F5F2EB] hover:text-brand-dark px-6 sm:px-8 py-3 sm:py-3.5 rounded-full font-sans font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-sm active:scale-95 border border-[#C5A059]/20"
+            className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 rounded-full bg-brand-walnut hover:bg-brand-gold text-[#F5F2EB] hover:text-brand-dark font-sans font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 shadow-md group"
           >
-            Consultar Menú Completo
-            <ArrowRight className="w-4 h-4" />
+            <span>Explorar Toda la Carta</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </div>
 
-      {/* Interactive Dish Zoom & Presentation Modal */}
+      {/* Dish Presentation Modal */}
       <DishDetailModal
         dish={selectedDishForPreview}
         onClose={() => setSelectedDishForPreview(null)}

@@ -69,25 +69,22 @@ export default function DishDetailModal({
           </button>
 
           {/* Zoom Presentation Stage */}
-          <div className="relative w-full h-56 sm:h-72 rounded-3xl overflow-hidden bg-gradient-to-b from-[#EAE5DC] to-[#DED7CB] border border-[#261A14]/10 mb-5 flex items-center justify-center p-4 group">
-            {/* Ambient warm glow behind dish */}
-            <div className="absolute w-44 h-44 rounded-full bg-brand-gold/25 blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-700" />
-
+          <div className="relative w-full aspect-[4/3] max-h-72 rounded-3xl overflow-hidden bg-brand-dark/10 border border-[#261A14]/15 mb-5 flex items-center justify-center group shadow-md">
             {/* High-Resolution Zoomable Dish Image */}
-            <div className="relative w-48 h-48 sm:w-60 sm:h-60 transform group-hover:scale-110 transition-transform duration-500 ease-out">
+            <div className="relative w-full h-full transform group-hover:scale-105 transition-transform duration-500 ease-out">
               <Image
                 src={dish.imageUrl}
                 alt={dish.name}
                 fill
-                sizes="(max-width: 640px) 240px, 320px"
-                className="object-contain drop-shadow-[0_15px_25px_rgba(38,26,20,0.35)]"
+                sizes="(max-width: 640px) 450px, 600px"
+                className="object-cover"
                 priority
               />
             </div>
 
             {/* Top Category / Special Badge */}
             {dish.badge && (
-              <div className="absolute top-4 left-4 bg-brand-walnut text-[#F5F2EB] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-brand-gold/30 shadow-md">
+              <div className="absolute top-4 left-4 bg-brand-walnut/90 backdrop-blur-xs text-[#F5F2EB] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-brand-gold/30 shadow-md z-10">
                 {dish.badge}
               </div>
             )}

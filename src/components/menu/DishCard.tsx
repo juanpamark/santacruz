@@ -47,10 +47,10 @@ export default function DishCard({
   return (
     <div className="group bg-[#FAF8F5] rounded-2xl sm:rounded-[2rem] p-3 sm:p-5 border border-[#261A14]/10 shadow-sm hover:shadow-card-luxury transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
       <div>
-        {/* Visual Container in Warm Stone - Clickable for HD Presentation / Zoom */}
+        {/* 4:3 Editorial Photo Container - Clickable for HD Presentation / Zoom */}
         <div
           onClick={handleImageClick}
-          className="relative w-full h-28 sm:h-44 rounded-xl sm:rounded-2xl overflow-hidden bg-[#EDE8DF] flex items-center justify-center p-2 sm:p-3 mb-2.5 sm:mb-4 border border-[#261A14]/5 cursor-pointer select-none"
+          className="relative w-full aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-[#EDE8DF] mb-2.5 sm:mb-4 border border-[#261A14]/10 cursor-pointer select-none shadow-sm"
           title={`Ver presentación en alta resolución de ${dish.name}`}
           role="button"
           tabIndex={0}
@@ -61,19 +61,19 @@ export default function DishCard({
             }
           }}
         >
-          <div className="relative w-24 h-24 sm:w-36 sm:h-36 group-hover:scale-105 transition-transform duration-500">
+          <div className="relative w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out">
             <Image
               src={dish.imageUrl}
               alt={dish.name}
               fill
-              sizes="(max-width: 640px) 120px, 180px"
-              className="object-contain drop-shadow-dish-25d"
+              sizes="(max-width: 640px) 200px, 320px"
+              className="object-cover"
             />
           </div>
 
           {/* Discreet Zoom Pill on Hover */}
-          <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-            <span className="bg-brand-dark/85 text-brand-gold text-[10px] font-sans font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-md border border-brand-gold/30">
+          <div className="absolute inset-0 bg-black/15 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+            <span className="bg-brand-dark/90 text-brand-gold text-[10px] font-sans font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-md border border-brand-gold/30">
               <ZoomIn className="w-3 h-3 text-brand-gold" />
               Ver detalle
             </span>
@@ -81,7 +81,7 @@ export default function DishCard({
 
           {/* Maximum 1 Discrete Badge for Signature Dishes */}
           {dish.badge && (
-            <div className="absolute top-2 left-2 bg-brand-walnut text-[#F5F2EB] text-[8px] sm:text-[9px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full border border-[#C5A059]/20 shadow-sm z-10 pointer-events-none">
+            <div className="absolute top-2 left-2 bg-brand-walnut/90 backdrop-blur-xs text-[#F5F2EB] text-[8px] sm:text-[9px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full border border-[#C5A059]/20 shadow-sm z-10 pointer-events-none">
               {dish.badge}
             </div>
           )}
@@ -129,17 +129,17 @@ export default function DishCard({
                 ? "bg-emerald-600 text-white"
                 : "bg-brand-walnut hover:bg-brand-gold text-[#F5F2EB] hover:text-brand-dark"
             }`}
-            aria-label={`Agregar ${dish.name}`}
+            aria-label={`Agregar ${dish.name} al pedido`}
           >
             {justAdded ? (
               <>
-                <Check className="w-3 h-3 stroke-[3]" />
-                <span className="hidden sm:inline">Agregado</span>
+                <Check className="w-3 h-3" />
+                <span>Listo</span>
               </>
             ) : (
               <>
-                <Plus className="w-3 h-3 stroke-[2.5]" />
-                <span className="hidden sm:inline">Agregar</span>
+                <Plus className="w-3 h-3" />
+                <span>Pedir</span>
               </>
             )}
           </button>
