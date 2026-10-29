@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     "Restaurante Alamos Bogota",
   ],
   icons: {
-    icon: "/images/brand/logo_gold.png",
-    shortcut: "/images/brand/logo_gold.png",
-    apple: "/images/brand/logo_gold.png",
+    icon: VENUE_INFO.officialLogoUrl,
+    shortcut: VENUE_INFO.officialLogoUrl,
+    apple: VENUE_INFO.officialLogoUrl,
   },
   openGraph: {
     title: "Santa Cruz Restaurante | Tradición y Confort en Bogotá",
