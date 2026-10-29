@@ -106,14 +106,6 @@ export default function FloatingWhatsApp() {
         aria-label="Abrir canales de WhatsApp de Santa Cruz"
         className="group relative flex items-center justify-center w-14 h-14 sm:w-15 sm:h-15 rounded-full bg-[#25D366] text-white shadow-2xl hover:scale-105 active:scale-95 transition-transform duration-300 shadow-[#25D366]/40"
       >
-        {/* Subtle Ping Animation Ring */}
-        {!isOpen && (
-          <span
-            className="absolute inset-0 rounded-full bg-[#25D366] opacity-30 animate-ping pointer-events-none"
-            aria-hidden="true"
-          />
-        )}
-
         {/* Authentic Official WhatsApp SVG Icon */}
         <svg
           viewBox="0 0 24 24"
