@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-cinzel: 'Cinzel', serif, Georgia;
+  --font-jakarta: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: #121212;
+    color: #F5F2EB;
+    font-family: var(--font-jakarta);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background-color: #C5A059;
+    color: #121212;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for clean horizontal swiping */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* 2.5D Multilayer Realistic Shadow for Floating Dishes */
+  .dish-floating-shadow {
+    filter: drop-shadow(0 25px 30px rgba(0, 0, 0, 0.65))
+            drop-shadow(0 45px 50px rgba(0, 0, 0, 0.45));
+    transition: filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dish-floating-shadow:hover {
+    filter: drop-shadow(0 35px 35px rgba(0, 0, 0, 0.75))
+            drop-shadow(0 60px 60px rgba(0, 0, 0, 0.55));
+  }
+
+  /* Glassmorphism Dark for Top Bars */
+  .glass-dark {
+    background: rgba(18, 18, 18, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.12);
+  }
+}
+
+/* Organic Floating Levitation Keyframes */
+@keyframes levitate-1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes levitate-2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(-1.5deg);
+  }
+}
+
+@keyframes levitate-3 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.8deg);
+  }
+}
+
+@keyframes levitate-4 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(-1deg);
+  }
+}
+
+.animate-levitate-1 {
+  animation: levitate-1 5.5s ease-in-out infinite;
+}
+
+.animate-levitate-2 {
+  animation: levitate-2 6.8s ease-in-out infinite 0.5s;
+}
+
+.animate-levitate-3 {
+  animation: levitate-3 6.0s ease-in-out infinite 1s;
+}
+
+.animate-levitate-4 {
+  animation: levitate-4 7.2s ease-in-out infinite 1.5s;
+}
