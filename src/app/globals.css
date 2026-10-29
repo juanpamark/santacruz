@@ -108,3 +108,114 @@
 .animate-levitate-4 {
   animation: levitate-4 7.2s ease-in-out infinite 1.5s;
 }
+
+/* GPU-Accelerated Falling Particle Keyframes (60-120fps, Zero Main Thread Load) */
+@keyframes fall-drift-1 {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.95;
+  }
+  80% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(25px, 85vh, 0) rotate(140deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fall-drift-2 {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate3d(-30px, 88vh, 0) rotate(-160deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fall-drift-3 {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.95;
+  }
+  80% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(20px, 82vh, 0) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fall-drift-4 {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  80% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate3d(-20px, 86vh, 0) rotate(-120deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fall-drift-5 {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.75;
+  }
+  80% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate3d(15px, 80vh, 0) rotate(90deg);
+    opacity: 0;
+  }
+}
+
+.animate-falling-1 {
+  animation: fall-drift-1 14s linear infinite;
+  will-change: transform, opacity;
+}
+.animate-falling-2 {
+  animation: fall-drift-2 16s linear infinite;
+  animation-delay: -5s;
+  will-change: transform, opacity;
+}
+.animate-falling-3 {
+  animation: fall-drift-3 13s linear infinite;
+  animation-delay: -9s;
+  will-change: transform, opacity;
+}
+.animate-falling-4 {
+  animation: fall-drift-4 15s linear infinite;
+  animation-delay: -3s;
+  will-change: transform, opacity;
+}
+.animate-falling-5 {
+  animation: fall-drift-5 17s linear infinite;
+  animation-delay: -11s;
+  will-change: transform, opacity;
+}
