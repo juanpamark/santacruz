@@ -139,7 +139,7 @@ export default function DishCard({
             ) : (
               <>
                 <Plus className="w-3 h-3" />
-                <span>Pedir</span>
+                <span>Añadir</span>
               </>
             )}
           </button>

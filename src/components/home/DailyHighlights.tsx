@@ -129,7 +129,7 @@ export default function DailyHighlights() {
                   ) : (
                     <>
                       <Plus className="w-3 h-3" />
-                      <span>Pedir</span>
+                      <span>Añadir</span>
                     </>
                   )}
                 </button>
